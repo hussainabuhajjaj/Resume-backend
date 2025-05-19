@@ -8,6 +8,25 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\NewsletterController;
+use App\Http\Controllers\Api\SeoDetailController;
+use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\ShareSnippetController;
+use App\Http\Controllers\Api\TagController;
+
+Route::prefix('blog')->group(function () {
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('posts', PostController::class);
+    Route::apiResource('comments', CommentController::class);
+    Route::apiResource('newsletters', NewsletterController::class);
+    Route::apiResource('seo-details', SeoDetailController::class);
+    Route::apiResource('settings', SettingController::class);
+    Route::apiResource('share-snippets', ShareSnippetController::class);
+    Route::apiResource('tags', TagController::class);
+});
 
 /*
 |--------------------------------------------------------------------------
