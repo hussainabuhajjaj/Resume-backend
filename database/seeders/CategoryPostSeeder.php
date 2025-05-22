@@ -12,6 +12,9 @@ class CategoryPostSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \Firefly\FilamentBlog\Models\Post::all()->each(function ($post) {
+            $categories = \Firefly\FilamentBlog\Models\Category::inRandomOrder()->take(rand(1, 3))->pluck('id');
+            $post->categories()->attach($categories);
+        });
     }
 }

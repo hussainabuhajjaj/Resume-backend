@@ -29,7 +29,42 @@ return [
         /*
          * Description rendered on the home page of the API documentation (`/docs/api`).
          */
-        'description' => '',
+        'description' => 'API Description
+This API provides public access to blog and portfolio data for the Hussain Resume project.
+It is designed for frontend applications (such as React, Vue, or mobile apps) to fetch content without authentication.
+
+Blog Endpoints
+Categories: List and view blog categories.
+Posts: List and view blog posts.
+Comments: List and view comments on posts.
+Newsletters: List and view newsletter entries.
+SEO Details: List and view SEO metadata for blog content.
+Settings: List and view blog settings.
+Share Snippets: List and view code snippets for sharing.
+Tags: List and view tags associated with blog posts.
+Portfolio Endpoints
+Personal Info: Fetch personal profile information.
+Navigation Links: Get navigation menu items.
+Social Links: Get social media links.
+Tech Categories & Items: List technology categories and items used in the portfolio.
+Experiences: List professional experiences.
+Projects: List and view portfolio projects.
+Education Items: List educational background.
+Testimonials: List testimonials from clients or colleagues.
+Patron Tiers: List available supporter tiers and their benefits.
+Contact
+Contact Submissions: Submit contact forms (POST).
+Authentication
+All endpoints are public and do not require authentication or credentials.
+
+Base URL:
+https://hussainwh.info/api/
+
+Example Usage:
+
+GET /api/blog/posts — List all blog posts
+GET /api/portfolio/personal-info — Get personal info
+GET /api/portfolio/testimonials — List testimonials',
     ],
 
     /*
@@ -44,7 +79,7 @@ return [
         /*
          * Define the theme of the documentation. Available options are `light` and `dark`.
          */
-        'theme' => 'dark',
+        'theme' => 'light',
 
         /*
          * Hide the `Try It` feature. Enabled by default.

@@ -14,23 +14,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
- \App\Models\PersonalInfo::factory()->create();
-    // $this->call([
-    //     TechSeeder::class,
-    //      ExperienceSeeder::class,
-    //      CategorySeeder::class,
-    //    TagSeeder::class,
-    //     //PostSeeder::class,
-    //     //CategoryPostSeeder::class,
-    //    // PostTagSeeder::class,
-    //    // SeoDetailSeeder::class,
-    //    // CommentSeeder::class,
-    //    // NewsletterSeeder::class,
-    //   // ShareSnippetSeeder::class,
-    //   // SettingSeeder::class,
-    // ]);
-      //  User::factory()->create([ 'name' => 'TestUser',
-        //    'email' => 'test@example.com',
-      //  ]);
+//  \App\Models\PersonalInfo::factory()->create();
+     $this->call([
+       // TechSeeder::class,
+       //  ExperienceSeeder::class,
+        CategorySeeder::class,
+     // TagSeeder::class,
+       PostSeeder::class,
+      //   CategoryPostSeeder::class,
+      //  PostTagSeeder::class,
+      //  SeoDetailSeeder::class,
+      //  CommentSeeder::class,
+      //  NewsletterSeeder::class,
+      // ShareSnippetSeeder::class,
+      // SettingSeeder::class,
+    ]);
+     
     }
 }

@@ -12,6 +12,11 @@ class PostTagSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \Firefly\FilamentBlog\Models\Post::all()->each(function ($post) {
+            $tags = \Firefly\FilamentBlog\Models\Tag::inRandomOrder()->take(rand(1, 3))->pluck('id');
+            $post->tags()->attach($tags);
+        });
+       
+
     }
 }

@@ -44,7 +44,7 @@ return [
     /*
      * Headers will only be added if this setting is set to true.
      */
-    'enabled' => env('CSP_ENABLED', true),
+    'enabled' => env('CSP_ENABLED', false),
 
     /**
      * Headers will be added when Vite is hot reloading.
@@ -62,5 +62,5 @@ return [
      * and cannot add inline nonces.
      * Note that this will make your CSP policy less secure.
      */
-    'nonce_enabled' => env('CSP_NONCE_ENABLED', true),
+    'nonce_enabled' => env('CSP_NONCE_ENABLED', false),
 ];
