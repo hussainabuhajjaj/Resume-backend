@@ -9,7 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
@@ -29,8 +29,9 @@ class ProjectResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('image_url')
-                   
+                
+ 
+SpatieMediaLibraryFileUpload::make('image_url')->collection('Projects')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('project_url')
                     ->label('Live Project URL')

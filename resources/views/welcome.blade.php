@@ -273,5 +273,24 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+        
+        {{-- resources/views/layouts/app.blade.php --}}
+{{-- resources/views/welcome.blade.php --}}
+
+<script>
+    console.log("This will violate CSP");
+</script>
+@inject('nonce', 'Spatie\Csp\Nonce\NonceGenerator')
+
+<script nonce="{{ $nonce->generate() }}">
+    console.log('Inline script with nonce');
+</script>
+
+<style nonce="{{ $nonce->generate() }}">
+    .highlight {
+        color: red;
+    }
+</style>
+
     </body>
 </html>

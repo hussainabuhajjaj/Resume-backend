@@ -14,6 +14,14 @@ class SocialLinkResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'url' => $this->url,
+            'icon_svg' => $this->icon_svg,
+            'order' => $this->order,
+            'created_at' => $this->created_at?->toISOString(),
+            'updated_at' => $this->updated_at?->toISOString(),
+        ];
     }
 }

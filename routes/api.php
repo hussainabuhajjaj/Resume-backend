@@ -15,18 +15,10 @@ use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\SeoDetailController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ShareSnippetController;
-use App\Http\Controllers\Api\TagController;
+use Firefly\FilamentBlog\Models\TagController;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
-Route::prefix('blog')->group(function () {
-    Route::apiResource('categories', CategoryController::class);
-    Route::apiResource('posts', PostController::class);
-    Route::apiResource('comments', CommentController::class);
-    Route::apiResource('newsletters', NewsletterController::class);
-    Route::apiResource('seo-details', SeoDetailController::class);
-    Route::apiResource('settings', SettingController::class);
-    Route::apiResource('share-snippets', ShareSnippetController::class);
-    Route::apiResource('tags', TagController::class);
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +32,22 @@ Route::prefix('blog')->group(function () {
 */
 
 // Publicly accessible portfolio data
+Route::middleware([
+    EnsureFrontendRequestsAreStateful::class,
+    'auth:sanctum'
+])->group(function () {
+    Route::prefix('blog')->group(function () {
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('posts', PostController::class);
+    Route::apiResource('comments', CommentController::class);
+    Route::apiResource('newsletters', NewsletterController::class);
+    Route::apiResource('seo-details', SeoDetailController::class);
+    Route::apiResource('settings', SettingController::class);
+    Route::apiResource('share-snippets', ShareSnippetController::class);
+    Route::apiResource('tags', TagController::class);
+    
+});
+Route::prefix('portfolio')->group(function () {
 Route::get('/personal-info', [Api\PersonalInfoController::class, 'index'])->name('api.personal-info.index');
 
 Route::get('/navigation-links', [Api\NavigationLinkController::class, 'index'])->name('api.navigation-links.index');
@@ -58,3 +66,5 @@ Route::post('/contact-submissions', [Api\ContactSubmissionController::class, 'st
 // Example of fetching a single item (less common for portfolio frontends but good to know)
  Route::get('/projects/{project}', [Api\ProjectController::class, 'show'])->name('api.projects.show');
 // Route::get('/experiences/{experience}', [Api\ExperienceController::class, 'show'])->name('api.experiences.show');
+});
+});

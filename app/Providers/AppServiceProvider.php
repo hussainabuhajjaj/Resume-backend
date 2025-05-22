@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Dedoc\Scramble\Scramble;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\URL;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,5 +26,11 @@ class AppServiceProvider extends ServiceProvider
         ->routes(function (Route $route) {
             return Str::startsWith($route->uri, 'api/');
         });
+        if ($this->app->environment('production')) {
+        URL::forceScheme('https');
     }
+    }
+    
+
+
 }
