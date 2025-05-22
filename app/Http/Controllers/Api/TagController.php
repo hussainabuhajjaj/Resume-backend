@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Firefly\FilamentBlog\Models\Tag;
+use App\Http\Resources\TagResource;
 
 class TagController extends Controller
 {
@@ -12,7 +14,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::withCount('posts')->get();
+        return TagResource::collection($tags);
     }
 
     /**
@@ -20,7 +23,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:50|unique:' . (new Tag)->getTable() . ',name',
+            'slug' => 'required|string|max:155|unique:' . (new Tag)->getTable() . ',slug',
+        ]);
+
+        $tag = Tag::create($validated);
+
+        return new TagResource($tag);
     }
 
     /**
@@ -28,7 +38,8 @@ class TagController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $tag = Tag::withCount('posts')->findOrFail($id);
+        return new TagResource($tag);
     }
 
     /**
@@ -36,7 +47,16 @@ class TagController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'sometimes|required|string|max:50|unique:' . $tag->getTable() . ',name,' . $tag->id,
+            'slug' => 'sometimes|required|string|max:155|unique:' . $tag->getTable() . ',slug,' . $tag->id,
+        ]);
+
+        $tag->update($validated);
+
+        return new TagResource($tag);
     }
 
     /**
@@ -44,6 +64,9 @@ class TagController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+
+        return response()->json(['message' => 'Tag deleted successfully.']);
     }
 }

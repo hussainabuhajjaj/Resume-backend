@@ -3,11 +3,17 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api; // Import the Api namespace
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-
+use App\Http\Controllers\Api\ContactSubmissionController;
+use App\Http\Controllers\Api\EducationItemController;
+use App\Http\Controllers\Api\ExperienceController;
+use App\Http\Controllers\Api\NavigationLinkController;
+use App\Http\Controllers\Api\PersonalInfoController;
+use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\SocialLinkController;
+use App\Http\Controllers\Api\TechCategoryController;
+use App\Http\Controllers\Api\TechItemController;
+use App\Http\Controllers\Api\PortfolioController;
+use App\Http\Controllers\Api\PortfolioItemController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\CommentController;
@@ -15,7 +21,7 @@ use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\SeoDetailController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ShareSnippetController;
-use Firefly\FilamentBlog\Models\TagController;
+use App\Http\Controllers\Api\TagController;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 

@@ -8,6 +8,7 @@ use App\Models\SocialLink;
 
 class SocialLinkController extends Controller
 {
+   
     public function index()
     {
         return SocialLinkResource::collection(SocialLink::orderBy('order')->get());
