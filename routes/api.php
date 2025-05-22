@@ -117,6 +117,7 @@ Route::prefix('portfolio')->group(function () {
     Route::get('/navigation-links', [Api\NavigationLinkController::class, 'index'])->name('api.navigation-links.index');
     Route::get('/social-links', [Api\SocialLinkController::class, 'index'])->name('api.social-links.index');
     Route::get('/tech-categories', [Api\TechCategoryController::class, 'index'])->name('api.tech-categories.index');
+    Route::get('/education-items', [Api\EducationItemController::class, 'index'])->name('api.education-items.index');
     Route::get('/tech-items', [Api\TechItemController::class, 'index'])->name('api.tech-items.index');
     Route::get('/experiences', [Api\ExperienceController::class, 'index'])->name('api.experiences.index');
     Route::get('/projects', [Api\ProjectController::class, 'index'])->name('api.projects.index');
