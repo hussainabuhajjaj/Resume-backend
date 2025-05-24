@@ -85,6 +85,7 @@ Route::prefix('blog')->group(function () {
         'index' => 'api.posts.index',
         'show' => 'api.posts.show',
     ]);
+ Route::get('/posts/slug/{slug}', [PostController::class, 'showBySlug'])->name('api.posts.showBySlug');
     Route::apiResource('comments', Api\CommentController::class)->only(['index', 'show'])->names([
         'index' => 'api.comments.index',
         'show' => 'api.comments.show',

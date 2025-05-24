@@ -15,7 +15,7 @@ use Firefly\FilamentBlog\Models\Role;
 use Firefly\FilamentBlog\Models\Permission;
 use Firefly\FilamentBlog\Models\Setting;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Str;
 class PostController extends Controller
 {
     public function index(Request $request)
@@ -100,5 +100,40 @@ class PostController extends Controller
             'message' => 'Post not found.-'.$e->getMessage(),
         ], 404);
     }
+}
+
+
+
+public function showBySlug(string $slug)
+{
+    $post = Post::with([
+        'user',
+        'categories',
+        'tags',
+        'comments',
+        'seoDetail'
+    ])->where('slug', $slug)->first();
+
+    if (!$post) {
+        // Try fuzzy match by title
+        $relatedPosts = Post::where('title', 'like', "%$slug%")
+            ->orWhereHas('tags', function ($q) use ($slug) {
+                $q->where('name', 'like', "%$slug%");
+            })
+            ->orWhereHas('categories', function ($q) use ($slug) {
+                $q->where('name', 'like', "%$slug%");
+            })
+            ->take(5)
+            ->get();
+
+        return response()->json([
+            'message' => "Post not found",
+            'suggestions' => PostResource::collection($relatedPosts),
+        ], 404);
+    }
+
+    $post->setRelation('related_posts', $post->relatedPosts(3));
+
+    return new PostResource($post);
 }
 }
