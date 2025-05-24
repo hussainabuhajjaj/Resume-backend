@@ -49,7 +49,7 @@ class PostSeeder extends Seeder
             'scheduled_for' => null,
             'cover_photo_path' => 'covers/eloquent-relationships.jpg',
             'photo_alt_text' => 'Eloquent relationships diagram',
-            'user_id' => 2,
+            'user_id' => 1,
         ],
         [
             'title' => 'Deploying Laravel Apps to Production',
@@ -73,7 +73,7 @@ class PostSeeder extends Seeder
             'scheduled_for' => null,
             'cover_photo_path' => 'covers/filament-admin.jpg',
             'photo_alt_text' => 'Filament admin dashboard screenshot',
-            'user_id' => 3,
+            'user_id' => 1,
         ],
         [
             'title' => 'Scheduling Tasks in Laravel',
@@ -85,7 +85,7 @@ class PostSeeder extends Seeder
             'scheduled_for' => null,
             'cover_photo_path' => 'covers/laravel-scheduler.jpg',
             'photo_alt_text' => 'Clock and calendar illustration',
-            'user_id' => 2,
+            'user_id' => 1,
         ],
     ];
 
