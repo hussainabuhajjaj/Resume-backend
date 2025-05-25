@@ -19,7 +19,7 @@ class SeoDetailResource extends JsonResource
             'post_id' => $this->post_id,
             'post' => $this->whenLoaded('post', fn () => new PostResource($this->post)),
             'title' => $this->title,
-            'keywords' => json_decode($this->keywords),
+            'keywords' => $this->keywords,
             'description' => $this->description,
             'created_at' => $this->created_at?->toISOString(),
             'updated_at' => $this->updated_at?->toISOString(),
