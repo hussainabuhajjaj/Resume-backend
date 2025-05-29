@@ -80,7 +80,25 @@ class PostController extends Controller
 
         return PostResource::collection($posts);
     }
+public function toggleLike(Request $request, Post $post)
+{
+    $existingLike = $post->likes()
+        ->where('user_id', optional($request->user())->id)
+        ->orWhere('ip_address', $request->ip())
+        ->first();
 
+    if ($existingLike) {
+        $existingLike->delete();
+        return response()->json(['liked' => false]);
+    }
+
+    $post->likes()->create([
+        'user_id' => optional($request->user())->id,
+        'ip_address' => $request->ip(),
+    ]);
+
+    return response()->json(['liked' => true]);
+}
  public function show($id)
 {
     try {
